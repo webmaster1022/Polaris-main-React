@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "polaris-for-vscode: client",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}/polaris-for-vscode",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}/polaris-for-vscode"
+      ],
+      "outFiles": ["${workspaceRoot}/polaris-for-vscode/dist/**/*.js"],
+      "preLaunchTask": "polaris-for-vscode: start-dev",
+      "postDebugTask": "polaris-for-vscode: stop-dev"
+    },
+    {
+      "name": "polaris-for-vscode: server",
+      "type": "node",
+      "request": "attach",
+      "port": 6009,
+      "restart": true,
+      "outFiles": ["${workspaceRoot}/polaris-for-vscode/dist/**/*.js"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "polaris-for-vscode: debug",
+      "configurations": [
+        "polaris-for-vscode: client",
+        "polaris-for-vscode: server"
+      ]
+    }
+  ]
+}
